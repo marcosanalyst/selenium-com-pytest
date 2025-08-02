@@ -5,8 +5,11 @@ class LoginPage:
     # construtor da classe
     def __init__(self):
         self.driver = conftest.driver
+        self.username_field = (By.XPATH, "//input[@id='user-name']")
+        self.password_field = (By.XPATH, "//input[@id='password']")
+        self.login_button = (By.XPATH, "//input[@id='login-button']")
 
     def fazer_login(self, usuario, senha):
-        self.driver.find_element(By.XPATH, "//input[@id='user-name']").send_keys(usuario)
-        self.driver.find_element(By.XPATH, "//input[@id='password']").send_keys(senha)
-        self.driver.find_element(By.XPATH, "//input[@id='login-button']").click()
+        self.driver.find_element(*self.username_field).send_keys(usuario)
+        self.driver.find_element(*self.password_field).send_keys(senha)
+        self.driver.find_element(*self.login_button).click()
