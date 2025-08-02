@@ -17,3 +17,5 @@ class LoginPage(BasePage):
         self.escrever(self.username_field, usuario)
         self.escrever(self.password_field, senha)
         self.clicar(self.login_button)
+
+
