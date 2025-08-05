@@ -1,4 +1,6 @@
 import conftest
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
@@ -21,6 +23,9 @@ class BasePage:
         assert self.encontrar_elemento(locator).is_displayed(), f"O elemento {locator} não foi encontrado!"
 
     def pegar_texto_elemento(self, locator):
+        self.esperar_elemento_aparecer(locator)
         return self.encontrar_elemento(locator).text
 
-
+    # adionado valor padrão/default para o timeout de 10 segundos
+    def esperar_elemento_aparecer(self, locator, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(*locator))
