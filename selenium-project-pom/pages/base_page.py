@@ -29,3 +29,9 @@ class BasePage:
     # adionado valor padrão/default para o timeout de 10 segundos
     def esperar_elemento_aparecer(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(*locator))
+
+    def verificar_elemento_existe(self, locator):
+        assert self.encontrar_elemento(locator), f"Elemento '{locator}' não existe, mas é esperado que ele exista."
+
+    def verificar_elemento_nao_existe(self, locator):
+        assert len(self.encontrar_elementos(locator)) == 0, f"Elemento '{locator}' existe, mas é esperado que ele não exista."
