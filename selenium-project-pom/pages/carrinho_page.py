@@ -7,8 +7,12 @@ class CarrinhoPage(BasePage):
         super().__init__()
         self.driver = conftest.driver
         self.item_inventario = (By.XPATH, "//*[@data-test='inventory-item-name' and text()='{}']")
+        self.botao_continuar_comprando =  (By.XPATH, "//button[@id='continue-shopping']")
 
     def verificar_produto_carrinho_existe(self, nome_item):
         # By. está na posição zero e Locator está na posição 1
         item = (self.item_inventario[0], self.item_inventario[1].format(nome_item))
         self.verificar_se_elemento_existe(item)
+
+    def clicar_continuar_comprando(self):
+        self.clicar(self.botao_continuar_comprando)
